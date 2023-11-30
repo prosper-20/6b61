@@ -5,7 +5,7 @@ from django.db import models
 class News(models.Model):
     headline = models.CharField(max_length=200)
     content = models.TextField()
-    category = models.CharField()
+    category = models.CharField(max_length=100)
     reporter = models.CharField(max_length=300)
     image = models.ImageField(upload_to="news_images", blank=True, null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
