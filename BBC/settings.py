@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news.apps.NewsConfig'
+    'news.apps.NewsConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+from decouple import config
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'BBC',       # Replace with your PostgreSQL database name
+#         'USER': 'postgres',       # Replace with your PostgreSQL database user
+#         'PASSWORD': config('DB_PASSWORD'), # Replace with your PostgreSQL database password
+#         'HOST': 'localhost',                      # Replace with your PostgreSQL host
+#         'PORT': '5432',                               # Leave empty to use the default PostgreSQL port (5432)
+#     },
+# }
 
 
 # Password validation
@@ -118,7 +131,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+MEDIA_URL = "media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
